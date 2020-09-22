@@ -74,9 +74,9 @@ class DataManager(object):
 
         self.client.switch_database(self.args['influx_db'])
         data = self.client.query(SELECT_TEST_DATA.format(self.args['simulation'], self.args['build_id']))
-        print(data)
+        print(data[0:300])
         data = list(data.get_points())
-        print(data)
+        print(data[0:300])
         start_time = int(
             str(datetime.datetime.strptime(data[0]['time'], '%Y-%m-%dT%H:%M:%S.%fZ').timestamp()).split(".")[0]) \
                      - int(int(data[0]['response_time']) / 1000)
